@@ -5,30 +5,14 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	// "os"
-	// "runtime"
+
+	"GroupieTracker/model"
 )
-
-type ArtistsApi struct {
-	Id              int64    `json:"id"`
-	Name            string   `json:"name"`
-	Image           string   `json:"image"`
-	Members         []string `json:"members"`
-	CreationDate    uint16   `json:"creationDate"`
-	LocationsUrl    string   `json:"locations"`
-	ConcertDatesUrl string   `json:"concertDates"`
-	RelationsUrl    string   `json:"relations"`
-}
-
-type ConcertDates struct {
-	Id    int64    `json:"id"`
-	Dates []string `json:"dates"`
-}
 
 type API struct {
 }
 
-func (r API) GetArtistsApi() (*[]ArtistsApi, error) {
+func (r API) GetArtistsApi() (*[]model.ArtistsApi, error) {
 
 	body, err := MakeRequest(`https://groupietrackers.herokuapp.com/api/artists`)
 	if err != nil {
@@ -38,13 +22,33 @@ func (r API) GetArtistsApi() (*[]ArtistsApi, error) {
 	return s, err
 }
 
-func (r API) GetConcertDates(id int64) (*ConcertDates, error) {
+func (r API) GetConcertDates() (*model.Dates, error) {
 
-	body, err := MakeRequest("https://groupietrackers.herokuapp.com/api/dates/" + fmt.Sprint(id))
+	body, err := MakeRequest("https://groupietrackers.herokuapp.com/api/dates")
 	if err != nil {
 		return nil, err
 	}
 	s, err := ParseConcertDates(body)
+	return s, err
+}
+
+func (r API) GetLocations() (*model.Locations, error) {
+
+	body, err := MakeRequest("https://groupietrackers.herokuapp.com/api/locations")
+	if err != nil {
+		return nil, err
+	}
+	s, err := ParseLocations(body)
+	return s, err
+}
+
+func (r API) GetRelation() (*model.Relation, error) {
+
+	body, err := MakeRequest("https://groupietrackers.herokuapp.com/api/relation")
+	if err != nil {
+		return nil, err
+	}
+	s, err := ParseRelation(body)
 	return s, err
 }
 
@@ -63,8 +67,8 @@ func MakeRequest(url string) ([]byte, error) {
 	return []byte(body), err
 }
 
-func ParseArtistsApi(body []byte) (*[]ArtistsApi, error) {
-	var artist = new([]ArtistsApi)
+func ParseArtistsApi(body []byte) (*[]model.ArtistsApi, error) {
+	var artist = new([]model.ArtistsApi)
 	err := json.Unmarshal(body, artist)
 	if err != nil {
 		fmt.Println("whoops:", err)
@@ -72,8 +76,8 @@ func ParseArtistsApi(body []byte) (*[]ArtistsApi, error) {
 	return artist, err
 }
 
-func ParseConcertDates(body []byte) (*ConcertDates, error) {
-	var dates = new(ConcertDates)
+func ParseConcertDates(body []byte) (*model.Dates, error) {
+	var dates = new(model.Dates)
 	err := json.Unmarshal(body, dates)
 	if err != nil {
 		fmt.Println("whoops:", err)
@@ -81,19 +85,48 @@ func ParseConcertDates(body []byte) (*ConcertDates, error) {
 	return dates, err
 }
 
+func ParseLocations(body []byte) (*model.Locations, error) {
+	var locations = new(model.Locations)
+	err := json.Unmarshal(body, locations)
+	if err != nil {
+		fmt.Println("whoops:", err)
+	}
+	return locations, err
+}
+
+func ParseRelation(body []byte) (*model.Relation, error) {
+	var relation = new(model.Relation)
+	err := json.Unmarshal(body, relation)
+	if err != nil {
+		fmt.Println("whoops:", err)
+	}
+	return relation, err
+}
+
 func main() {
-	fmt.Println("------")
+	//fmt.Println("------")
 	API := new(API)
-	artists, err := API.GetArtistsApi()
+	// artists, err := API.GetArtistsApi()
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
+	// fmt.Println((*artists)[0])
+
+	// dates, err := API.GetConcertDates()
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
+	// fmt.Println(dates.Index[0].Dates)
+
+	// locations, err := API.GetLocations()
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
+	// fmt.Println(locations.Index[0].Locations)
+
+	relation, err := API.GetRelation()
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println((*artists)[0])
-
-	dates, err := API.GetConcertDates((*artists)[0].Id)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	fmt.Println(dates)
+	fmt.Println(relation.Index[0])
 }
