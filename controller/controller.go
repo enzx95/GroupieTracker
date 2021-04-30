@@ -1,11 +1,21 @@
 package controller
 
 import (
+	"GroupieTracker/model"
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strings"
 	"time"
 )
+
+var artist *[]model.ArtistsApi
+var dates *model.Dates
+var locations *model.Locations
+var relation *model.Relation
+
+var colorGreen = "\033[32m"
+var colorReset = "\033[0m"
 
 func MakeRequest(url string) ([]byte, error) {
 
@@ -23,37 +33,70 @@ func MakeRequest(url string) ([]byte, error) {
 }
 
 func artistsInit() {
-	artists, err := GetArtistsApi()
+	artistsData, err := GetArtistsApi()
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println("Artists done.")
-	fmt.Println((*artists)[0])
+	fmt.Println(string(colorGreen), "Artists done.")
+	fmt.Print(string(colorReset))
+	fmt.Println((*artistsData)[0])
+	artist = artistsData
 }
-
 func datesInit() {
-	dates, err := GetConcertDates()
+	datesData, err := GetConcertDates()
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println("Dates done.")
-	fmt.Println(dates.Index[0].Dates)
+	fmt.Println(string(colorGreen), "Dates done.")
+	fmt.Print(string(colorReset))
+	fmt.Println(datesData.Index[0].Dates)
+	dates = datesData
 }
 func locationsInit() {
-	locations, err := GetLocations()
+	locationsData, err := GetLocations()
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println("Locations done.")
-	fmt.Println(locations.Index[0].Locations)
+	fmt.Println(string(colorGreen), "Locations done.")
+	fmt.Print(string(colorReset))
+	fmt.Println(locationsData.Index[0].Locations)
+	locations = locationsData
 }
 func relationInit() {
-	relation, err := GetRelation()
+	relationData, err := GetRelation()
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println("Relation done.")
-	fmt.Println(relation.Index[0])
+	fmt.Println(string(colorGreen), "Relation done.")
+	fmt.Print(string(colorReset))
+	fmt.Println(relationData.Index[0])
+	relation = relationData
+}
+
+func GetDataByID(id int) *model.Artist {
+
+	var artistData = new(model.Artist)
+	artistData.Id = int64(id)
+	artistData.Name = (*artist)[id].Name
+	artistData.Image = (*artist)[id].Image
+	artistData.Members = (*artist)[id].Members
+
+	for i, s := range dates.Index[id].Dates {
+		dates.Index[id].Dates[i] = s[1:]
+	}
+
+	artistData.ConcertDates = dates.Index[id].Dates
+
+	for i, s := range locations.Index[id].Locations {
+		locations.Index[id].Locations[i] = strings.ReplaceAll(s, "_", " ")
+	}
+
+	artistData.ConcertLocations = locations.Index[id].Locations
+	artistData.CreationDate = (*artist)[id].CreationDate
+
+	//fmt.Println(artistData)
+	return artistData
+
 }
 
 func Init() {

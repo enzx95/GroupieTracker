@@ -6,4 +6,5 @@ import (
 
 func main() {
 	controller.Init()
+	controller.GetDataByID(0)
 }
