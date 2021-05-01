@@ -2,8 +2,10 @@ package controller
 
 import (
 	"GroupieTracker/model"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"strings"
 	"time"
@@ -93,8 +95,13 @@ func GetDataByID(id int) *model.Artist {
 
 	artistData.ConcertLocations = locations.Index[id].Locations
 	artistData.CreationDate = (*artist)[id].CreationDate
+	artistData.Relation = relation.Index[id].DatesLocations
 
-	//fmt.Println(artistData)
+	empJSON, err := json.MarshalIndent(artistData, "", "  ")
+	if err != nil {
+		log.Fatalf(err.Error())
+	}
+	fmt.Printf(string(empJSON))
 	return artistData
 
 }

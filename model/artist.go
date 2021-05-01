@@ -8,4 +8,5 @@ type Artist struct {
 	CreationDate     uint16
 	ConcertLocations []string
 	ConcertDates     []string
+	Relation         map[string][]string
 }
