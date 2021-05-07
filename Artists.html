@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="filter.css">
     
     <style>
     	body{
@@ -20,6 +21,7 @@
     		min-height: 250px;
     	}
     	.main{
+			display: flex;
     		padding: 40px 0;
     	}
     	.col-md-3{
@@ -85,9 +87,29 @@
 		
 
 	</div>
+
+	<div class="container1">
+        <aside>
+            <h3>Artist / Group</h3>
+            <div>
+                <div><input type="checkbox" name="artistGroup" value="artist" id="artist"><label for="artist">Artist</label></div>
+                <div><input type="checkbox" name="artistGroup" value="group" id="group"><label for="group">Group</label></div>
+            </div>
+            <h3>Date de création</h3>
+            <div>
+                <div><input type="text" onkeypress="return checkEnter(event);" name="creationDate" id="creationDate1" placeholder="Entrer une année"></div>
+            <h3>Country</h3>
+            <div>
+                <div><input type="checkbox" name="country" value="country1" id="country1"><label for="country1">1</label></div>
+                <div><input type="checkbox" name="country" value="country2" id="country2"><label for="country2">2</label></div>
+            </div>
+        </aside>
+    </div>
 </div>
 
 	
+</body>
 
-	</body>
+<script src="test.js"></script>
+
 </html>
