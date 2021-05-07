@@ -41,6 +41,8 @@ func mainPageHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	controller.Init()
 	makeTab()
+	fs := http.FileServer(http.Dir("assets"))
+	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
 	http.HandleFunc("/", mainPageHandler)
 	http.ListenAndServe(":8080", nil)
 
