@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"regexp"
 	"strings"
 	"time"
 )
@@ -88,12 +89,30 @@ func GetDataByID(id int) *model.Artist {
 	}
 
 	artistData.ConcertDates = dates.Index[id].Dates
-
+	var countries []string
+	var cities []string
+	//Removes _ and regex to extract country
 	for i, s := range locations.Index[id].Locations {
 		locations.Index[id].Locations[i] = strings.ReplaceAll(s, "_", " ")
+		regCountry := regexp.MustCompile(`-[a-z]* ?[a-z]* ?[a-z]*`)
+		regCity := regexp.MustCompile(`[a-z]* ?[a-z]* ?[a-z]*-`)
+		countries = append(countries, regCountry.FindAllString(s, -1)[0])
+		cities = append(cities, regCity.FindAllString(s, -1)[0])
+	}
+	//Trim the "-"
+	for i, s := range countries {
+		countries[i] = strings.TrimPrefix(s, "-")
+	}
+	for i, s := range cities {
+		cities[i] = strings.TrimSuffix(s, "-")
 	}
 
-	artistData.ConcertLocations = locations.Index[id].Locations
+	countries = removeDuplicateValues(countries)
+	cities = removeDuplicateValues(cities)
+
+	artistData.Countries = countries
+	artistData.Cities = cities
+
 	artistData.CreationDate = (*artist)[id].CreationDate
 	artistData.Relation = relation.Index[id].DatesLocations
 
@@ -104,6 +123,21 @@ func GetDataByID(id int) *model.Artist {
 	fmt.Printf(string(empJSON))
 	return artistData
 
+}
+func removeDuplicateValues(Slice []string) []string {
+	keys := make(map[string]bool)
+	list := []string{}
+
+	// If the key(values of the slice) is not equal
+	// to the already present value in new slice (list)
+	// then we append it. else we jump on another element.
+	for _, entry := range Slice {
+		if _, value := keys[entry]; !value {
+			keys[entry] = true
+			list = append(list, entry)
+		}
+	}
+	return list
 }
 
 func Init() {
