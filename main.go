@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strings"
 	"text/template"
 	"time"
 )
@@ -22,9 +23,14 @@ func makeTab() {
 
 }
 
+func join(s ...string) string {
+	// first arg is sep, remaining args are strings to join
+	return strings.Join(s[1:], s[0])
+}
+
 func mainPageHandler(w http.ResponseWriter, r *http.Request) {
 
-	tmpl, err := template.ParseFiles("Artists.html")
+	tmpl, err := template.New("Artists.html").Funcs(template.FuncMap{"join": join}).ParseFiles("Artists.html")
 
 	if err != nil {
 		log.Fatal(err)
