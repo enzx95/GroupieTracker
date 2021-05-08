@@ -1,115 +1,137 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="filter.css">
-    
-    <style>
-    	body{
-    		background-color: #333333;
-    		font-family: Open sans;
-    	}
-    	img{
-    		width: 100%;
-    		min-height: 250px;
-    	}
-    	.main{
-			display: flex;
-    		padding: 40px 0;
-    	}
-    	.col-md-3{
-    		margin-bottom: 40px;
-    	}
-    	.album-poster{
-    		position: relative;
-    		display: block;
-    		border-radius: 7px;
-    		overflow: hidden;
-    		box-shadow: 0 6px 5px #d6d6d654;
-    		transition: all ease 0.4s;
-    	}
-    	.album-poster:hover{
-    		box-shadow: 0 15px 35px #d6d6d654;
-    		transform: scale(0.98) translateY(5px);
-    	}
-    	h3{
-    		font-size: 34px;
-    		margin-bottom: 34px;
-    		border-bottom: 4px solid #e6e6e6;
-    		padding-bottom: 15px;
-            color: whitesmoke;
-            font-family: 'Nunito', sans-serif;
-    	}
-    	p{
-    		font-size: 15px;
-            font-family: 'Nunito', sans-serif;
-            color: whitesmoke;
-    	}
-    	h4{
-    		font-size: 16px;
-    		text-transform: uppercase;
-    		margin-top: 15px;
-    		font-weight: 700;
-            font-family: 'Nunito', sans-serif;
-            color: whitesmoke;
-    	}
+<head>
 
-    </style>
- 	</head>
-	<body>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<div class="main">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<h3>Artists</h3>
+	<!-- Bootstrap CSS -->
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+
+
+	<style>
+		body {
+			background-color: #333333;
+			font-family: Open sans;
+		}
+
+		img {
+			width: 100%;
+			min-height: 250px;
+		}
+
+		.main {
+			padding: 40px 0;
+		}
+
+		.col-md-3 {
+			margin-bottom: 40px;
+		}
+
+		.album-poster {
+			position: relative;
+			display: block;
+			border-radius: 7px;
+			overflow: hidden;
+			box-shadow: 0 6px 5px #d6d6d654;
+			transition: all ease 0.4s;
+		}
+
+		.album-poster:hover {
+			box-shadow: 0 15px 35px #d6d6d654;
+			transform: scale(0.98) translateY(5px);
+		}
+
+		h3 {
+			font-size: 34px;
+			margin-bottom: 34px;
+			border-bottom: 4px solid #e6e6e6;
+			padding-bottom: 15px;
+			color: whitesmoke;
+			font-family: 'Nunito', sans-serif;
+		}
+
+		p {
+			font-size: 15px;
+			font-family: 'Nunito', sans-serif;
+			color: whitesmoke;
+		}
+
+		h4 {
+			font-size: 16px;
+			text-transform: uppercase;
+			margin-top: 15px;
+			font-weight: 700;
+			font-family: 'Nunito', sans-serif;
+			color: whitesmoke;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="main">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h3>Artists</h3>
+				</div>
+				{{range .}}
+				{{ $countries := "" }}
+				{{ $cities := "" }}
+				{{range .Countries}}
+				{{$countries = join " " $countries .}}
+				{{end}}
+				{{range .Cities}}
+				{{$cities = join " " $cities .}}
+				{{end}}
+				{{ if eq (len .Members) 1 }}
+
+				<div class="col-md-3">
+					<div class="people artist{{$countries}}{{$cities}}">
+						<a class="album-poster">
+							<img src="{{.Image}}" alt="" draggable="false">
+						</a>
+						<h4>{{.Name}}</h4>
+						<p>Since {{.CreationDate}}</p>
+
+					</div>
+				</div>
+				{{ else if gt (len .Members) 1 }}
+
+				<div class="col-md-3">
+					<div class="people group{{$countries}}{{$cities}}">
+						<a class="album-poster">
+							<img src="{{.Image}}" alt="" draggable="false">
+						</a>
+						<h4>{{.Name}}</h4>
+						<p>Since {{.CreationDate}}</p>
+
+					</div>
+				</div>
+
+				{{ else if gt (len .Members) 1 }}
+
+				{{ end }}
+
+
+				{{end}}
 			</div>
-            {{range .}}
-               
-			<div class="col-md-3">
-				<a href="javascript:void();" class="album-poster">
-					<img src="{{.Image}}" alt=""draggable="false">
-				</a>
-				<h4>{{.Name}}</h4>
-				<p>Since {{.CreationDate}}</p>
-			</div>
-			{{end}}
+
+
+
+
 		</div>
-
-
-		
-
 	</div>
 
-	<div class="container1">
-        <aside>
-            <h3>Artist / Group</h3>
-            <div>
-                <div><input type="checkbox" name="artistGroup" value="artist" id="artist"><label for="artist">Artist</label></div>
-                <div><input type="checkbox" name="artistGroup" value="group" id="group"><label for="group">Group</label></div>
-            </div>
-            <h3>Date de création</h3>
-            <div>
-                <div><input type="text" onkeypress="return checkEnter(event);" name="creationDate" id="creationDate1" placeholder="Entrer une année"></div>
-            <h3>Country</h3>
-            <div>
-                <div><input type="checkbox" name="country" value="country1" id="country1"><label for="country1">1</label></div>
-                <div><input type="checkbox" name="country" value="country2" id="country2"><label for="country2">2</label></div>
-            </div>
-        </aside>
-    </div>
-</div>
 
-	
+
 </body>
-
-<script src="test.js"></script>
+<script src="/assets/js/javascript.js"></script>
 
 </html>
