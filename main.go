@@ -30,7 +30,7 @@ func join(s ...string) string {
 
 func mainPageHandler(w http.ResponseWriter, r *http.Request) {
 
-	tmpl, err := template.New("assets/pages/Artists.html").Funcs(template.FuncMap{"join": join}).ParseFiles("assets/pages/Artists.html")
+	tmpl, err := template.New("Artists.html").Funcs(template.FuncMap{"join": join}).ParseFiles("./assets/pages/Artists.html")
 
 	if err != nil {
 		log.Fatal(err)
