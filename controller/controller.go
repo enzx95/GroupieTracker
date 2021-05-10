@@ -96,7 +96,14 @@ func GetDataByID(id int) *model.Artist {
 		locations.Index[id].Locations[i] = strings.ReplaceAll(s, "_", " ")
 		regCountry := regexp.MustCompile(`-[a-z]* ?[a-z]* ?[a-z]*`)
 		regCity := regexp.MustCompile(`[a-z]* ?[a-z]* ?[a-z]*-`)
-		countries = append(countries, regCountry.FindAllString(s, -1)[0])
+
+		//Particular case
+		if s == "noumea-new_caledonia" {
+			countries = append(countries, "caleidonia")
+		} else {
+			countries = append(countries, regCountry.FindAllString(s, -1)[0])
+		}
+
 		cities = append(cities, regCity.FindAllString(s, -1)[0])
 	}
 	//Trim the "-"
