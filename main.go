@@ -72,4 +72,4 @@ func main() {
 	http.HandleFunc("/", mainPageHandler)
 	http.ListenAndServe(":8080", nil)
 
-}ok
+}
