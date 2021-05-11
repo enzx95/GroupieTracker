@@ -38,12 +38,17 @@
 				{{ if eq (len .Members) 1 }}
 
 				<div class="col-md-3">
+					
 					<div class="people artist{{$countries}}{{$cities}}">
+						
 						<a class="album-poster">
+							
 							<img src="{{.Image}}" alt="" draggable="false">
 						</a>
+						
 						<h4>{{.Name}}</h4>
 						<p>Since {{.CreationDate}}</p>
+						
 
 					</div>
 				</div>
@@ -51,6 +56,7 @@
 
 				<div class="col-md-3">
 					<div class="people group{{$countries}}{{$cities}}">
+						
 						<a class="album-poster">
 							<img src="{{.Image}}" alt="" draggable="false">
 						</a>
