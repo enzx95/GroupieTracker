@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 	"strings"
 	"text/template"
 	"time"
@@ -16,10 +17,11 @@ var tableau [52]*model.Artist
 func makeTab() {
 	start := time.Now()
 	for i := 0; i < 52; i++ {
-		tableau[i] = controller.GetDataByID(i)
+		//true or false to print the data gathered
+		tableau[i] = controller.GetDataByID(i, false)
 	}
 	elapsed := time.Since(start)
-	fmt.Printf("\ntook %s \n", elapsed)
+	fmt.Printf("\ntook %s for array initialization\n", elapsed)
 
 }
 
@@ -49,6 +51,39 @@ func mainPageHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func artistsPageHandler(w http.ResponseWriter, r *http.Request) {
+
+	id := r.URL.Path[len("/artist/"):]
+	fmt.Print(id)
+
+	idArtist, err := strconv.Atoi(id)
+	if err != nil {
+		errorHandler(w, r, http.StatusNotFound)
+		return
+	}
+
+	if idArtist > 51 {
+		errorHandler(w, r, http.StatusNotFound)
+		return
+	}
+
+	//true or false to print the data gathered
+	artist := controller.GetDataByID(idArtist, false)
+
+	tmpl, err := template.New("ArtistsDetails.html").Funcs(template.FuncMap{"join": join}).ParseFiles("./assets/pages/ArtistsDetails.html")
+
+	if err != nil {
+		log.Fatal(err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+
+	if err := tmpl.Execute(w, artist); err != nil {
+		log.Fatal(err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+
+}
+
 func errorHandler(w http.ResponseWriter, r *http.Request, status int) {
 	w.WriteHeader(status)
 	if status == http.StatusNotFound {
@@ -70,6 +105,6 @@ func main() {
 	fs := http.FileServer(http.Dir("assets"))
 	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
 	http.HandleFunc("/", mainPageHandler)
+	http.HandleFunc("/artist/", artistsPageHandler)
 	http.ListenAndServe(":8080", nil)
-
 }

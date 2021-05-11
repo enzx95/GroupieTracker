@@ -42,7 +42,7 @@ func artistsInit() {
 	}
 	fmt.Println(string(colorGreen), "Artists done.")
 	fmt.Print(string(colorReset))
-	fmt.Println((*artistsData)[0])
+	//fmt.Println((*artistsData)[0])
 	artist = artistsData
 }
 func datesInit() {
@@ -52,7 +52,7 @@ func datesInit() {
 	}
 	fmt.Println(string(colorGreen), "Dates done.")
 	fmt.Print(string(colorReset))
-	fmt.Println(datesData.Index[0].Dates)
+	//fmt.Println(datesData.Index[0].Dates)
 	dates = datesData
 }
 func locationsInit() {
@@ -62,7 +62,7 @@ func locationsInit() {
 	}
 	fmt.Println(string(colorGreen), "Locations done.")
 	fmt.Print(string(colorReset))
-	fmt.Println(locationsData.Index[0].Locations)
+	//fmt.Println(locationsData.Index[0].Locations)
 	locations = locationsData
 }
 func relationInit() {
@@ -72,11 +72,11 @@ func relationInit() {
 	}
 	fmt.Println(string(colorGreen), "Relation done.")
 	fmt.Print(string(colorReset))
-	fmt.Println(relationData.Index[0])
+	//fmt.Println(relationData.Index[0])
 	relation = relationData
 }
 
-func GetDataByID(id int) *model.Artist {
+func GetDataByID(id int, shown bool) *model.Artist {
 
 	var artistData = new(model.Artist)
 	artistData.Id = int64(id)
@@ -127,7 +127,9 @@ func GetDataByID(id int) *model.Artist {
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
-	fmt.Printf(string(empJSON))
+	if shown == true {
+		fmt.Printf(string(empJSON))
+	}
 	return artistData
 
 }
@@ -160,6 +162,6 @@ func Init() {
 	time.Sleep(600 * time.Millisecond)
 	// from 800ms to 600ms
 	elapsed := time.Since(start)
-	fmt.Printf("\ntook %s \n", elapsed)
+	fmt.Printf("\ntook %s to gather data\n", elapsed)
 
 }
