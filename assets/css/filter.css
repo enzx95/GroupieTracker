@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+
+
 h1 {
     text-align: center;
     margin-bottom: 0;
 }
-.container1 {
+.container2 {
+    font-family: "Ubuntu", sans-serif;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
@@ -14,6 +18,8 @@ aside {
 }
 aside div {
     margin: .25em 0;
+    margin-top: 35px;
+    margin-bottom: 35px;
 }
 input {
     margin-right: 5px;
