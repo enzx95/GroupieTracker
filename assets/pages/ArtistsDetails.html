@@ -12,11 +12,30 @@
 	<meta charset="UTF-8">
 	<title>{{.Name}} on Groupie Tracker</title>
 	<link rel="stylesheet" href="../assets/css/Artists.css">
+	<link rel="stylesheet" href="../assets/css/ArtistDetail.css">
 </head>
 
 <body>
+	
+	<div class = "ImgArtist">
+	<h4>{{.Name}}</h4>
+	<img src="{{.Image}}" alt="" draggable="false">
+	
+	</div>
+	<div class = "ArtistDetails">
 
-	{{.Name}}
+		
+			<p align ="center">Since {{.CreationDate}}</p>
+			{{range .Members}}
+			<p align="center">{{.}}</p>
+			{{end}}
+			{{ range $key, $value := .Relation }}
+   			<li><strong align ="center">{{ $key }}</strong>: {{ $value }}</li>
+			{{ end }}
+			
+	</div>
+
+
 	
 </body>
 
