@@ -2,22 +2,41 @@
 <html lang="en">
 
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<!-- Bootstrap CSS -->
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
-	<meta charset="UTF-8">
-	<title>{{.Name}} on Groupie Tracker</title>
-	<link rel="stylesheet" href="../assets/css/Artists.css">
+    <!-- Bootstrap CSS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com/%22%3E
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>{{.Name}} on Groupie Tracker</title>
+    <link rel="stylesheet" href="../assets/css/Artists.css">
+    <link rel="stylesheet" href="../assets/css/ArtistDetail.css">
 </head>
 
 <body>
 
-	{{.Name}}
-	
+    <div class = "ImgArtist">
+    <h4>{{.Name}}</h4>
+    <img src="{{.Image}}" alt="" draggable="false">
+
+    </div>
+    <div class = "ArtistDetails">
+
+
+            <p align ="center">Since {{.CreationDate}}</p>
+            {{range .Members}}
+            <p align="center">{{.}}</p>
+            {{end}}
+            {{ range $key, $value := .Relation }}
+               <li><strong align ="center">{{ $key }}</strong>: {{ $value }}</li>
+            {{ end }}
+
+    </div>
+
+
+
 </body>
 
 </html>
