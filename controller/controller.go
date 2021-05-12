@@ -85,7 +85,9 @@ func GetDataByID(id int, shown bool) *model.Artist {
 	artistData.Members = (*artist)[id].Members
 
 	for i, s := range dates.Index[id].Dates {
-		dates.Index[id].Dates[i] = s[1:]
+		if string(dates.Index[id].Dates[i][0]) == "*" {
+			dates.Index[id].Dates[i] = s[1:]
+		}
 	}
 
 	artistData.ConcertDates = dates.Index[id].Dates
