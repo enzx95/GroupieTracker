@@ -37,7 +37,7 @@ func mainPageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tmpl, err := template.New("Artists.html").Funcs(template.FuncMap{"join": join}).ParseFiles("./assets/pages/Artists.html")
+	tmpl, err := template.New("index.html").Funcs(template.FuncMap{"join": join}).ParseFiles("index.html")
 
 	if err != nil {
 		log.Fatal(err)

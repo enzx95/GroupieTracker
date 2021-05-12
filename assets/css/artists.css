@@ -9,11 +9,6 @@
 			display: none;
 		}
 
-		img {
-			width: 100%;
-			min-height: 250px;
-		}
-
 		.main {
 			padding: 40px 0;
 		}
@@ -26,6 +21,8 @@
 			position: relative;
 			display: block;
 			border-radius: 7px;
+			width: 100%;
+			min-height: 250px;
 			overflow: hidden;
 			box-shadow: 0 6px 5px #d6d6d654;
 			transition: all ease 0.4s;
