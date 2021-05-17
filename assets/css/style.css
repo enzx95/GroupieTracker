@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color:#D5D8DC ;
+    background-color:#EEE6D8 ;
 }
 
 body::-webkit-scrollbar {
@@ -47,7 +47,7 @@ li, a, button {
 }
 
 .links li a:hover {
-    color: blue;
+    color: #93441A;
 }
 
 button {
@@ -59,56 +59,7 @@ button {
 }
 
 button:hover {
-    background-color: lightblue;
-}
-
-#loader {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    z-index: 1;
-    width: 120px;
-    height: 120px;
-    margin: -76px 0 0 -76px;
-    border: 16px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 16px solid #3498db;
-    -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
-}
-
-@-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg);
-    }
-    100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.animate-bottom {
-    position: relative;
-    -webkit-animation-name: animatebottom;
-    -webkit-animation-duration: 1s;
-    animation-name: animatebottom ;
-    animation-duration: 1s;
-}
-
-@-webkit-keyframes animatebottom {
-    from { bottom:-100px; opacity:0 } 
-    to { bottom:0px; opacity:1 }
-}
-  
-@keyframes animatebottom { 
-    from{ bottom:-100px; opacity:0 } 
-    to{ bottom:0; opacity:1 }
-}
-  
-#myDiv {
-    display: none;
-    text-align: center;
+    background-color: #B67332;
 }
 
 .main {
@@ -116,6 +67,7 @@ button:hover {
     padding: 39px 0;
     float: right;
     width: 85%;
+    background-color: #DAAB3A;
 
 }
 
@@ -134,21 +86,21 @@ button:hover {
     display: block;
     border-radius: 7px;
     overflow: hidden;
-    box-shadow: 0 6px 5px #d6d6d654;
+    box-shadow: 0 6px 5px #B67332;
     transition: all ease 0.4s;
     width: 100%;
     min-height: 250px;
 }
 
 .album-poster:hover {
-    box-shadow: 0 15px 35px #d6d6d654;
+    box-shadow: 0 15px 35px #B67332;
     transform: scale(0.98) translateY(5px);
 }
 
 h3 {
     font-size: 34px;
     margin-bottom: 34px;
-    border-bottom: 4px solid #e6e6e6;
+    border-bottom: 4px solid #B67332;
     padding-bottom: 15px;
     color: black;
 }
@@ -171,6 +123,6 @@ input[type="checkbox"]+label{
     text-transform: uppercase;
     margin-top: 15px;
     font-weight: 500;
-    font-family: 'Nunito', sans-serif;
-    color: whitesmoke;
+    font-family: 'Ubuntu', sans-serif;
+    color: black;
 }

@@ -29,9 +29,8 @@ getChecked(name) {
 function setVisibility() {
     allPeople.map(function (el) {
         var artistGroup = checked.artistGroup.length ? _.intersection(Array.from(el.classList), checked.artistGroup).length : true;
-        var creationDate = checked.creationDate.length ? _.intersection(Array.from(el.classList), checked.creationDate).length : true;
         var country = checked.country.length ? _.intersection(Array.from(el.classList), checked.country).length : true;
-        if (artistGroup && creationDate && country) {
+        if (artistGroup && country) {
             el.style.display = 'block';
         }   else {
             el.style.display = "none";

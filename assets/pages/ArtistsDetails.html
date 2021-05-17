@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+<<<<<<< HEAD
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,6 +14,12 @@
 	<title>{{.Name}} on Groupie Tracker</title>
 	<link rel="stylesheet" href="../assets/css/Artists.css">
 	<link rel="stylesheet" href="../assets/css/ArtistDetail.css">
+=======
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Groupie Tracker</title>
+	<link rel="stylesheet" href="/assets/css/style.css">
+>>>>>>> 5a3455a1710844fe6f30da6b2094c18bb82d5f8d
 </head>
 
 <body>
@@ -36,7 +43,38 @@
 	</div>
 
 
+<<<<<<< HEAD
 	
+=======
+    <div class = "ImgArtist">
+        <h4>{{.Name}}</h4>
+        <img src="{{.Image}}" alt="" draggable="false">
+
+    </div>
+
+    <div class = "ArtistDetails">
+
+		<!-- {{$test := replace "Hello" "l" "a"}}
+		{{$test}} -->
+            <div class="date"><p>Since {{.CreationDate}}</p></div>
+            {{range .Members}}
+
+            <div class="Members"><p>{{.}}</p></div>
+            {{end}}
+			
+            {{ range $key, $value := .Relation }}
+			{{$space := replace $key "_" " "}}
+            {{$space = replace $space "-" " "}}
+            <div class=""><li><b>{{ $space }}<b>: {{ $value }}</li></div>
+			   
+			   
+            {{ end }}
+
+    </div>
+
+// J'ai réorganiser votre page, editer les div concernées maintenant. ça vous évitera des problèmes.
+
+>>>>>>> 5a3455a1710844fe6f30da6b2094c18bb82d5f8d
 </body>
 
 </html>

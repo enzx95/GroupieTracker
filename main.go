@@ -30,6 +30,10 @@ func join(s ...string) string {
 	return strings.Join(s[1:], s[0])
 }
 
+func replace(input, from, to string) string {
+	return strings.Replace(input, from, to, -1)
+}
+
 func mainPageHandler(w http.ResponseWriter, r *http.Request) {
 
 	if r.URL.Path != "/" || r.Method != "GET" {
@@ -70,7 +74,7 @@ func artistsPageHandler(w http.ResponseWriter, r *http.Request) {
 	//true or false to print the data gathered
 	artist := controller.GetDataByID(idArtist, false)
 
-	tmpl, err := template.New("ArtistsDetails.html").Funcs(template.FuncMap{"join": join}).ParseFiles("./assets/pages/ArtistsDetails.html")
+	tmpl, err := template.New("ArtistsDetails.html").Funcs(template.FuncMap{"join": join, "replace": replace}).ParseFiles("./assets/pages/ArtistsDetails.html")
 
 	if err != nil {
 		log.Fatal(err)
