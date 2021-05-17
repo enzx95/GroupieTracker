@@ -9,7 +9,11 @@
 	<link rel="stylesheet" href="/assets/css/style.css">
 	<link rel="stylesheet" href="assets/css/filter.css">
 
-	<script> // Verif fichier
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<script>
 		$(function () {
 			var array = [];
 
@@ -29,7 +33,7 @@
 		});
 	</script>
 	
-	<script>  // Verif fichier
+	<script>
 		function ouvrirPage() {
 			var array = [];
 
@@ -60,12 +64,12 @@
         <img class="logo" src="assets/img/LOGO_YNOV.png">
         <nav>
             <ul class="links">
-                <li><a href="#">Artists</a></li>
+                <li><a href="assets/pages/Artists.html">Artists</a></li>
                 <li><a href="#">Onglet 2</a></li>
                 <li><a href="#">Onglet 3</a></li>
             </ul>
         </nav>
-            <div class="container">
+            <div class="container4">
                 <input type="search" id="search" value="" onchange="ouvrirPage()">
 				<input type="button" id="button" onclick="ouvrirPage()" value="Chercher">
             </div>
@@ -210,10 +214,6 @@
 	</div>
 
 </body>
-
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script src="/assets/js/filter.js"></script>
 

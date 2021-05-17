@@ -2,45 +2,41 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="preconnect" href="https://fonts.gstatic.com/%22%3E
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <title>{{.Name}} on Groupie Tracker</title>
-    <link rel="stylesheet" href="../assets/css/Artists.css">
-    <link rel="stylesheet" href="../assets/css/ArtistDetail.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Groupie Tracker</title>
+	<link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
 <body>
 
     <div class = "ImgArtist">
-    <h4>{{.Name}}</h4>
-    <img src="{{.Image}}" alt="" draggable="false">
+        <h4>{{.Name}}</h4>
+        <img src="{{.Image}}" alt="" draggable="false">
 
     </div>
+
     <div class = "ArtistDetails">
 
 		<!-- {{$test := replace "Hello" "l" "a"}}
 		{{$test}} -->
-            <p align ="center">Since {{.CreationDate}}</p>
+            <div class="date"><p>Since {{.CreationDate}}</p></div>
             {{range .Members}}
-            <p align="center">{{.}}</p>
+
+            <div class="Members"><p>{{.}}</p></div>
             {{end}}
 			
             {{ range $key, $value := .Relation }}
 			{{$space := replace $key "_" " "}}
-               <li><strong align ="center">{{ $space }}</strong>: {{ $value }}</li>
+            {{$space = replace $space "-" " "}}
+            <div class=""><li><b>{{ $space }}<b>: {{ $value }}</li></div>
 			   
 			   
             {{ end }}
 
     </div>
 
-
+// J'ai réorganiser votre page, editer les div concernées maintenant. ça vous évitera des problèmes.
 
 </body>
 
