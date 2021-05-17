@@ -2,50 +2,14 @@
 <html lang="en">
 
 <head>
-<<<<<<< HEAD
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<!-- Bootstrap CSS -->
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
-	<meta charset="UTF-8">
-	<title>{{.Name}} on Groupie Tracker</title>
-	<link rel="stylesheet" href="../assets/css/Artists.css">
-	<link rel="stylesheet" href="../assets/css/ArtistDetail.css">
-=======
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Groupie Tracker</title>
 	<link rel="stylesheet" href="/assets/css/style.css">
->>>>>>> 5a3455a1710844fe6f30da6b2094c18bb82d5f8d
 </head>
 
 <body>
-	
-	<div class = "ImgArtist">
-	<h4>{{.Name}}</h4>
-	<img src="{{.Image}}" alt="" draggable="false">
-	
-	</div>
-	<div class = "ArtistDetails">
 
-		
-			<p align ="center">Since {{.CreationDate}}</p>
-			{{range .Members}}
-			<p align="center">{{.}}</p>
-			{{end}}
-			{{ range $key, $value := .Relation }}
-   			<li><strong align ="center">{{ $key }}</strong>: {{ $value }}</li>
-			{{ end }}
-			
-	</div>
-
-
-<<<<<<< HEAD
-	
-=======
     <div class = "ImgArtist">
         <h4>{{.Name}}</h4>
         <img src="{{.Image}}" alt="" draggable="false">
@@ -74,7 +38,6 @@
 
 // J'ai réorganiser votre page, editer les div concernées maintenant. ça vous évitera des problèmes.
 
->>>>>>> 5a3455a1710844fe6f30da6b2094c18bb82d5f8d
 </body>
 
 </html>
