@@ -58,7 +58,7 @@ func mainPageHandler(w http.ResponseWriter, r *http.Request) {
 func artistsPageHandler(w http.ResponseWriter, r *http.Request) {
 
 	id := r.URL.Path[len("/artist/"):]
-	fmt.Print(id)
+	//fmt.Print(id)
 
 	idArtist, err := strconv.Atoi(id)
 	if err != nil {

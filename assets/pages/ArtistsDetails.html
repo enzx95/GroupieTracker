@@ -1,73 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Groupie Tracker</title>
+    <link rel="stylesheet" href="/assets/css/ArtistDetail.css">
+</head>
 
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-      
-        <link href="/assets/css/ArtistDetail.css" rel='stylesheet' type='text/css'>
-      </head>
-       <div class="navbar">
-        <img class="logo" src="img/LOGO_YNOV.png">
-        <nav>
-            <ul class="links">
-                <li><a href="Artists.html">Artists</a></li>
-            </ul>
-        </nav>
-    </div>
-      
-        <div class="box">
-          <div id="overlay">
-            <div class="image">
-                <img src="{{.Image}}" alt="" draggable="false">
-              <div class="trick">
-      
-              </div>
-            </div>
-            <ul class="text">{{.Name}}</ul>
-            <div class="text1">{{.CreationDate}}</div>
-      
-      
-      
-      
-      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-          <div class="panel-heading " role="tab" id="headingOne">
-            <h4 class="panel-title ">
-              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="" aria-controls="collapseOne">
-                <div class="title  btn btn-danger btn-outline btn-lg">Members</div>
-              </a>
-            </h4>
-          </div>
-          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
-                {{range .Members}}
+<body>
 
-                <div class="Members"><p>{{.}}</p></div>
-                {{end}}
-
-            </div>
-          </div>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-heading" role="tab" id="headingTwo">
-            <h4 class="panel-title">
-              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                <div class="title btn btn-danger btn-outline btn-lg">Concert Dates</div>
-              </a>
-            </h4>
-          </div>
-          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-            <div class="panel-body">          
-                {{ range $key, $value := .Relation }}
-                {{$space := replace $key "_" " "}}
-                {{$space = replace $space "-" " "}}
-                <div class=""><li><b>{{ $space }}<b>: {{ $value }}</li></div>
-                   
-                   
-                {{ end }}
-            </div>
-          </div>
-        </div>
         
-      </div>
+
+    <div class="ImgArtist" >
+        <h1>{{.Name}}</h1>
+        <img src="{{.Image}}" alt="" draggable="false" >
+
+    </div>
+    <div class="card">
+        <h1>Since {{.CreationDate}}</h1>
+        <p class="title"></p>
+        <hr size ="3" color = "black" />
+        <h2>Members :</h2>
+        {{range .Members}}
+        <p>{{.}} </p>
+        {{end}}
+        <hr size ="3" color = "black" />
+        <h2>Concerts :</h2>
+        {{ range $key, $value := .Relation }}
+        {{$space := replace $key "_" " "}}
+        {{$space = replace $space "-" " "}}
+
+        <div class="">
+            <li><b>{{ $space }}<b>:
+                        {{range $value}}
+                        {{$date := replace . "-" "/"}}
+                        {{ $date }}
+                        {{end}}</li>
+
+        </div>
+
+
+        {{ end }}
+
+      <br>
+       <p> <button><a href="/">Go back home</a></button></p>
+    </br>
+    </div>
+
+
+
+</body> 
+
+</html>
