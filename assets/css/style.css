@@ -83,7 +83,6 @@ button:hover {
 
 .album-poster {
     position: relative;
-    display: block;
     border-radius: 7px;
     overflow: hidden;
     box-shadow: 0 6px 5px #B67332;
