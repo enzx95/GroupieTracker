@@ -89,6 +89,7 @@ button:hover {
     transition: all ease 0.4s;
     width: 100%;
     min-height: 250px;
+    margin-top: 30px;
 }
 
 .album-poster:hover {
