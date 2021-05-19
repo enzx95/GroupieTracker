@@ -6,7 +6,7 @@ Groupie Trackers consists on receiving a given API and manipulate the data conta
 
 
 
-### Project members
+## Project members
 
 MEFTAH ZINEDINE
 
