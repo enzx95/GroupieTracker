@@ -6,7 +6,7 @@ Groupie Trackers consists on receiving a given API and manipulate the data conta
 
 
 
-## Project members
+### Project members
 
 MEFTAH ZINEDINE
 
@@ -17,3 +17,5 @@ MEZOUANI MARVIN
 BENTEFRIT SALIM
 
 GRZESKIEWICZ ENZO
+
+![N|Solid](https://hub.ynov.com/medias/resize/230/160/group/4885004055cd155d99144d.png)
