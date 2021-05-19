@@ -3,10 +3,12 @@ Groupie Tracker is a website that allows you to track your favorites artists inf
 ## Objectives
 
 Groupie Trackers consists on receiving a given API and manipulate the data contained in it, in order to create a site, displaying the information.
+## How to run
+To run the website, clone the repo and run the main.go file.
 
+![N|Solid](https://i.imgur.com/FirM0BU.gif)
 
-
-## Project members
+### Project members
 
 MEFTAH ZINEDINE
 
